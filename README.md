@@ -3,7 +3,7 @@
 ## Members
 
 - Jonathan Mendoza
-- Valeria Vasallo
+- Valeria Vassallo
 - Carlos Sandoval
 
 ## Installation
