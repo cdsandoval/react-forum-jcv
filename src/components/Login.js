@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 
-function CompanyForm({ setUsername, setEmail }) {
+function LoginForm({ onUser }) {
   const formContainer = {
     display: "flex",
     alignItems: "center",
@@ -44,7 +44,7 @@ function CompanyForm({ setUsername, setEmail }) {
     }
   };
 
-  const inputCompanyName = {
+  const input = {
     margin: "0.5em 0",
     fontSize: "20px",
     paddingTop: "15px",
@@ -90,21 +90,21 @@ function CompanyForm({ setUsername, setEmail }) {
       padding: "0.2em"
     }
   };
-
   const [contentUserName, setContUserName] = React.useState("");
-  const [contentEmail, setcontentEmail] = React.useState("");
+  const [contentUserEmail, setContentEmail] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    setUsername(contentUserName);
-    setEmail(contentEmail);
+    
+    onUser({ name: contentUserName, email: contentUserEmail });
+    
   }
 
   function handleChange(event) {
     if (event.target.name === "userName") {
       setContUserName(event.target.value);
     } else {
-      setcontentEmail(event.target.value);
+      setContentEmail(event.target.value);
     }
   }
 
@@ -113,9 +113,9 @@ function CompanyForm({ setUsername, setEmail }) {
       <form onSubmit={handleSubmit} css={styledForm}>
         <header css={styledHeader}>Username</header>
         <input
-          css={inputCompanyName}
-          aria-label="Input to get Company's name"
-          placeholder="Enter company's name"
+          css={input}
+          aria-label="Input to get username"
+          placeholder="Enter username"
           type="text"
           required
           name="userName"
@@ -126,8 +126,8 @@ function CompanyForm({ setUsername, setEmail }) {
         />
         <header css={styledHeader}>E-mail</header>
         <input
-          css={inputCompanyName}
-          aria-label="Input to get Company's name"
+          css={input}
+          aria-label="Input to get email"
           placeholder="Enter email"
           type="text"
           required
@@ -145,4 +145,4 @@ function CompanyForm({ setUsername, setEmail }) {
   );
 }
 
-export default CompanyForm;
+export default LoginForm;

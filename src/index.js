@@ -4,10 +4,18 @@ import Main from "./views/Main";
 import Discussion from "./views/Discussions";
 import { Router } from "@reach/router";
 import Header from "./components/header";
+import LoginForm from "./components/Login";
 
 const NotFound = () => <p>Sorry, nothing here.</p>;
 
+
+
 function App() {
+  function handleUser(value) {
+    setUser(value);
+  }
+  const [user, setUser] = React.useState({ name: "", email: "" });
+  console.log(user);
   return (
     <main
       css={{
@@ -21,11 +29,13 @@ function App() {
       }}
     >
       <div>
+        
         <Router>
           <Header default />
         </Router>
       </div>
       <Router>
+      <LoginForm path="/" onUser={handleUser}/>
         <Main path="/" />
         <Discussion path="discussion/:title" />
         <NotFound default />
