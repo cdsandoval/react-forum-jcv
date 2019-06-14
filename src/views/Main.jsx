@@ -4,7 +4,8 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { Link } from "@reach/router";
 import TopicList from "../components/TopicList";
-import DiscussionForm from "../components/DiscussionForm";
+import Loading from "../components/Loading";
+const DiscussionForm = React.lazy(() => import("../components/DiscussionForm"));
 
 function Main() {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
@@ -55,11 +56,13 @@ function Main() {
           >
             Add new discussion
           </button>
-          {modalIsOpen &&
-            createPortal(
-              <DiscussionForm setModalIsOpen={handleOpenedModel} />,
-              $portal
-            )}
+          <React.Suspense fallback={<Loading />}>
+            {modalIsOpen &&
+              createPortal(
+                <DiscussionForm setModalIsOpen={handleOpenedModel} />,
+                $portal
+              )}
+          </React.Suspense>
           <div css={{ marginTop: "70px" }}>
             <TopicList />
           </div>
