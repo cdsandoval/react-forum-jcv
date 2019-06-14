@@ -35,8 +35,8 @@ function App() {
           </Router>
         </div>
         <Router>
-          <LoginForm path="/" onUser={handleUser} />
           <Main path="/" />
+          <LoginForm path="/" onUser={handleUser} />
           <Discussion path="discussion/:title" />
           <NotFound default />
         </Router>
