@@ -4,9 +4,7 @@ import Main from "./views/Main";
 import { Global } from "@emotion/core";
 
 function App() {
-  const [username, setUsername] = React.useState(
-    localStorage.getItem("username")
-  );
+  const [user, setUser] = React.useState(localStorage.getItem("user"));
 
   return (
     <>

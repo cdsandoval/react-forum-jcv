@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import React from "react";
+import TopicList from "../components/TopicList";
+import Topic from "../components/Topic";
+
 function Main() {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
@@ -94,8 +97,8 @@ function Main() {
           >
             Add new discussion
           </button>
-          <div css={{ textAlign: "center", marginTop: "70px" }}>
-            Discussion List
+          <div css={{ marginTop: "70px" }}>
+            <TopicList />
           </div>
         </div>
       </main>
