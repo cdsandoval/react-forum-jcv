@@ -3,9 +3,7 @@ import { jsx } from "@emotion/core";
 
 function Topic({ title, author }) {
   return (
-    <article
-      css={{ padding: "1rem 1.5rem", borderBottom: "1px solid #eaeaea" }}
-    >
+    <article css={{ padding: "1rem 1.5rem", borderBottom: "1px solid white" }}>
       <div>
         <h3 css={{ margin: ".5rem 0 0", fontSize: "2rem" }}>{title}</h3>
         <strong css={{ fontSize: "1rem" }}>{author}</strong>

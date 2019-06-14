@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import Topic from "./Topic";
+import { Link } from "@reach/router";
 
 const topics = [
   {
@@ -17,12 +18,18 @@ const topics = [
   }
 ];
 
-function TopicList() {
+function TopicList({ children }) {
   return (
     <section>
       {topics.map(values => (
-        <Topic author={values.author} title={values.title} />
+        <Link
+          to={`discussion/${values.title}`}
+          css={{ color: "black", textDecoration: "none" }}
+        >
+          <Topic author={values.author} title={values.title} />
+        </Link>
       ))}
+      {children}
     </section>
   );
 }

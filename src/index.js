@@ -1,24 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./views/Main";
-import { Global } from "@emotion/core";
+import Discussion from "./views/Discussions";
+import { Router } from "@reach/router";
+import Header from "./components/header";
+
+const NotFound = () => <p>Sorry, nothing here.</p>;
 
 function App() {
-  const [user, setUser] = React.useState(localStorage.getItem("user"));
-
   return (
-    <>
-      <Global
-        styles={{
-          body: {
-            margin: 0,
-            padding: 0
-          }
-        }}
-      />
-      <Main />
-    </>
+    <main
+      css={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: "grid",
+        gridTemplateRows: "100 auto"
+      }}
+    >
+      <div>
+        <Router>
+          <Header default />
+        </Router>
+      </div>
+      <Router>
+        <Main path="/" />
+        <Discussion path="discussion/:title" />
+        <NotFound default />
+      </Router>
+    </main>
   );
 }
 
-ReactDOM.render(<TopicList />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

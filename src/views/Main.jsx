@@ -1,73 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import React from "react";
-<<<<<<< HEAD
+import { Link } from "@reach/router";
 import TopicList from "../components/TopicList";
-import Topic from "../components/Topic";
-=======
-import TopicList from "./components/topiclist";
->>>>>>> Create Main Component
 
 function Main() {
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
-
-  function logOut() {
-    localStorage.removeItem("user");
-  }
+  // const [modalIsOpen, setModalIsOpen] = React.useState(false);
   return (
-    <div
-      css={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: "grid",
-        gridTemplateRows: "100px auto"
-      }}
-    >
-      <header
-        css={{
-          display: "flex",
-          justifyContent: "space-between",
-          fontFamily: "sans-serif",
-          borderBottom: "solid 1px black"
-        }}
-      >
-        <h1
-          css={{
-            marginLeft: "100px",
-            marginTop: "30px"
-          }}
-        >
-          JCV FORUM
-        </h1>
-        <button
-          onClick={logOut}
-          css={{
-            height: "30px",
-            textTransform: "uppercase",
-            cursor: "pointer",
-            boxSizing: "content-box",
-            width: "120px",
-            textAlign: "center",
-            fontSize: "14px",
-            fontWeight: "700",
-            letterSpacing: "0.5px",
-            backgroundColor: "rgb(0, 121, 211)",
-            color: "rgb(255,255,255)",
-            borderRadius: "5px",
-            padding: "3px 16px",
-            marginRight: "30px",
-            marginTop: "25px",
-            ":hover": {
-              backgroundColor: "rgb(0, 121, 211,0.7)"
-            }
-          }}
-        >
-          Log Out
-        </button>
-      </header>
+    <div>
       <main
         css={{
           boxSizing: "border-box",
@@ -76,7 +16,8 @@ function Main() {
           justifyContent: "center",
           margin: "0 auto",
           backgroundColor: "#DAE0E6",
-          width: "100%"
+          width: "100%",
+          height: "89vh"
         }}
       >
         <div css={{ width: "80%" }}>
@@ -101,13 +42,8 @@ function Main() {
           >
             Add new discussion
           </button>
-<<<<<<< HEAD
           <div css={{ marginTop: "70px" }}>
             <TopicList />
-=======
-          <div css={{ textAlign: "center", marginTop: "70px" }}>
-            Discussion List
->>>>>>> Create Main Component
           </div>
         </div>
       </main>
