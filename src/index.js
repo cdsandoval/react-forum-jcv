@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./views/Main";
-import Discussion from "./views/Discussions";
-import { Router, Redirect } from "@reach/router";
-import Header from "./components/header";
-import LoginForm from "./components/Login";
-import CommentForm from "./components/commentForm";
+import { Router } from "@reach/router";
+
+import Loading from "./components/Loading";
+const Header = React.lazy(() => import("./components/header"));
+const Main = React.lazy(() => import("./views/Main"));
+const Discussion = React.lazy(() => import("./views/Discussions"));
+const LoginForm = React.lazy(() => import("./components/Login"));
 
 const NotFound = () => <p>Sorry, nothing here.</p>;
 
@@ -33,24 +34,26 @@ function App() {
         gridTemplateRows: "100 auto"
       }}
     >
-      <div>
+      <React.Suspense fallback={<Loading />}>
+        <div>
+          <Router>
+            <Header default />
+          </Router>
+        </div>
         <Router>
-        <CommentForm path="/discussion/:title/comment"/> 
-          <Header default />
-        </Router>
-      </div>
-      <Router>
-        <CommentForm path="/discussion/:title/comment"/> 
+        {/* <CommentForm path="/discussion/:title/comment"/>  */}
         {username ? (
           <LoginForm onUser={handleUser} path="/" />
         ) : (
           <Main path="/discussion" />
         )}
-        <Redirect from="/" to="/discussion" noThrow />
-        <Discussion path="discussion/:title" />
-        <NotFound default />
-      </Router>
-    </main>
+          <Main path="/" />
+          <LoginForm path="/" onUser={handleUser} />
+          <Discussion path="discussion/:title" />
+          <NotFound default />
+        </Router>
+      </React.Suspense>
+         </main>
   );
 }
 
