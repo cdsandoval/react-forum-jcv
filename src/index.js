@@ -2,18 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./views/Main";
 import Discussion from "./views/Discussions";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 import Header from "./components/header";
 import LoginForm from "./components/Login";
+import CommentForm from "./components/commentForm";
 
 const NotFound = () => <p>Sorry, nothing here.</p>;
 
-
-
 function App() {
+  const [username, setUsername] = React.useState(
+    localStorage.getItem("username")
+  );
+
   function handleUser(value) {
+    localStorage.setItem("username", JSON.stringify(value));
     setUser(value);
   }
+
   const [user, setUser] = React.useState({ name: "", email: "" });
   console.log(user);
   return (
@@ -29,14 +34,19 @@ function App() {
       }}
     >
       <div>
-        
         <Router>
+        <CommentForm path="/discussion/:title/comment"/> 
           <Header default />
         </Router>
       </div>
       <Router>
-      <LoginForm path="/" onUser={handleUser}/>
-        <Main path="/" />
+        <CommentForm path="/discussion/:title/comment"/> 
+        {username ? (
+          <LoginForm onUser={handleUser} path="/" />
+        ) : (
+          <Main path="/discussion" />
+        )}
+        <Redirect from="/" to="/discussion" noThrow />
         <Discussion path="discussion/:title" />
         <NotFound default />
       </Router>

@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 
-function LoginForm({ onUser }) {
+function CommentForm({ onUser }) {
   const formContainer = {
     display: "flex",
     alignItems: "center",
@@ -27,20 +27,6 @@ function LoginForm({ onUser }) {
     "@media (max-width: 960px)": {
       height: "120px",
       fontSize: "14px"
-    }
-  };
-
-  const styledHeader = {
-    textAlign: "center",
-    margin: "5px",
-    fontSize: "35px",
-    color: "white",
-    fontWeight: "bolder",
-    "@media (max-width: 960px)": {
-      height: "50px",
-      fontSize: "30px",
-      marginBottom: "5px",
-      marginTop: "0px"
     }
   };
 
@@ -111,28 +97,14 @@ function LoginForm({ onUser }) {
   return (
     <div css={formContainer}>
       <form onSubmit={handleSubmit} css={styledForm}>
-        <header css={styledHeader}>Username</header>
         <input
           css={input}
-          aria-label="Input to get username"
-          placeholder="Enter username"
+          aria-label="Input to get comment"
+          placeholder="Enter your comment"
           type="text"
           required
-          name="userName"
-          id="userName"
-          onChange={handleChange}
-          autoFocus
-          autoComplete="off"
-        />
-        <header css={styledHeader}>E-mail</header>
-        <input
-          css={input}
-          aria-label="Input to get email"
-          placeholder="Enter email"
-          type="text"
-          required
-          name="email"
-          id="email"
+          name="comment"
+          id="comment"
           onChange={handleChange}
           autoFocus
           autoComplete="off"
@@ -145,4 +117,4 @@ function LoginForm({ onUser }) {
   );
 }
 
-export default LoginForm;
+export default CommentForm;
