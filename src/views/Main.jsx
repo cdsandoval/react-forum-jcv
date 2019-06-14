@@ -1,11 +1,23 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import React from "react";
+import { createPortal } from "react-dom";
 import { Link } from "@reach/router";
 import TopicList from "../components/TopicList";
+import DiscussionForm from "../components/DiscussionForm";
 
 function Main() {
-  // const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const $portal = React.useMemo(() => document.getElementById("portal"), []);
+
+  function handleClick() {
+    setModalIsOpen(true);
+  }
+
+  function handleOpenedModel(value) {
+    setModalIsOpen(value);
+  }
+
   return (
     <div>
       <main
@@ -39,9 +51,15 @@ function Main() {
               marginTop: "40px",
               justifyContent: "flex-start"
             }}
+            onClick={handleClick}
           >
             Add new discussion
           </button>
+          {modalIsOpen &&
+            createPortal(
+              <DiscussionForm setModalIsOpen={handleOpenedModel} />,
+              $portal
+            )}
           <div css={{ marginTop: "70px" }}>
             <TopicList />
           </div>
