@@ -37,6 +37,10 @@ function DiscussionForm({ setModalIsOpen }) {
     // localStorage.setItem("discussion", JSON.stringify(discussion));
   }
 
+  function handleCancel(event) {
+    setModalIsOpen(false);
+  }
+
   const formStyled = {
     display: "flex",
     flexDirection: "column",
@@ -107,9 +111,24 @@ function DiscussionForm({ setModalIsOpen }) {
     }
   };
 
+  const closeButton = {
+    fontSize: "2em",
+    cursor: "pointer",
+    color: "white",
+    textAlign: "right",
+    width: "100%"
+  };
+
   return (
     <div css={formContainer}>
       <form css={formStyled} onSubmit={handleSubmit}>
+        <span
+          onClick={handleCancel}
+          css={closeButton}
+          aria-label="Close discussion form"
+        >
+          &times;
+        </span>
         <label css={{ color: "white", fontSize: "40px" }} htmlFor="title">
           Title
         </label>
