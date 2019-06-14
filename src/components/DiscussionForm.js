@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 
-function DiscussionForm({ setModalIsOpen }) {
+function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
   function JSONify(elements) {
     var obj = {};
     for (var i = 0; i < elements.length; ++i) {
@@ -16,8 +16,6 @@ function DiscussionForm({ setModalIsOpen }) {
     return obj;
   }
 
-  const [discussions, setDiscussions] = React.useState([]);
-
   // const author = localStorage.getItem(user[username]); => for when we have a user stored in the local storage
   const discussion = {
     ID: Date.now(),
@@ -30,11 +28,10 @@ function DiscussionForm({ setModalIsOpen }) {
     event.preventDefault();
     const data = JSONify(event.target.elements);
     Object.assign(discussion, data);
-    console.log(discussion);
-    setDiscussions(discussions.concat(discussion));
-    // console.log(discussions);
+    const addedData = discussions.concat(discussion);
+    setDiscussions(addedData);
+    localStorage.setItem("discussion", JSON.stringify(addedData));
     setModalIsOpen(false);
-    // localStorage.setItem("discussion", JSON.stringify(discussion));
   }
 
   function handleCancel(event) {

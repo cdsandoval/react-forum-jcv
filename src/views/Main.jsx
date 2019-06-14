@@ -8,6 +8,9 @@ import Loading from "../components/Loading";
 const DiscussionForm = React.lazy(() => import("../components/DiscussionForm"));
 
 function Main() {
+  const [discussions, setDiscussions] = React.useState(
+    JSON.parse(localStorage.getItem("answers")) || []
+  );
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const $portal = React.useMemo(() => document.getElementById("portal"), []);
 
@@ -68,7 +71,11 @@ function Main() {
           <React.Suspense fallback={<Loading />}>
             {modalIsOpen &&
               createPortal(
-                <DiscussionForm setModalIsOpen={handleOpenedModel} />,
+                <DiscussionForm
+                  setModalIsOpen={handleOpenedModel}
+                  setDiscussions={setDiscussions}
+                  discussions={discussions}
+                />,
                 $portal
               )}
           </React.Suspense>
