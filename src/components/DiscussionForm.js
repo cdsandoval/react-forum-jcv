@@ -31,7 +31,7 @@ function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
     Object.assign(discussion, data);
     const addedData = discussions.concat(discussion);
     setDiscussions(addedData);
-    localStorage.setItem("discussion", JSON.stringify(addedData));
+    localStorage.setItem("discussions", JSON.stringify(addedData));
     setModalIsOpen(false);
   }
 

@@ -6,7 +6,7 @@ function Discussions({ title }) {
   return (
     <div>
       <h1>Hola {title}</h1>
-      <Link to="/">Go to Home</Link>
+      <Link to="/discussion">Back Discussions</Link>
     </div>
   );
 }
