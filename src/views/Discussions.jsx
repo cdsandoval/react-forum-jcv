@@ -1,13 +1,16 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx } from "@emotion/core";
 import { Link } from "@reach/router";
+import DiscussionDetails from "../components/DiscussionDetails";
 
-function Discussions({ title }) {
+function Discussions({ title, discussions }) {
   return (
-    <div>
-      <h1>Hola {title}</h1>
+    <>
+      <DiscussionDetails title={title} discussions={discussions} />
+
       <Link to="/discussion">Back Discussions</Link>
-    </div>
+    </>
   );
 }
 

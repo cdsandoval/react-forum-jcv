@@ -6,10 +6,7 @@ import TopicList from "../components/TopicList";
 import Loading from "../components/Loading";
 const DiscussionForm = React.lazy(() => import("../components/DiscussionForm"));
 
-function Main() {
-  const [discussions, setDiscussions] = React.useState(
-    JSON.parse(localStorage.getItem("discussions")) || []
-  );
+function Main({ discussions, setDiscussions }) {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const $portal = React.useMemo(() => document.getElementById("portal"), []);
 
