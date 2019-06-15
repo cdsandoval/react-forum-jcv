@@ -26,11 +26,7 @@ function App() {
           </Router>
         </div>
         <Router>
-<<<<<<< HEAD
-          <Main path="/" />
-=======
           <Main path="/discussion" />
->>>>>>> Fix Login local storage
           <LoginForm path="/" onUser={handleUser} />
           <Discussion path="discussion/:title" />
           <NotFound default />
