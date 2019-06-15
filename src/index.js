@@ -11,23 +11,14 @@ const LoginForm = React.lazy(() => import("./components/Login"));
 const NotFound = () => <p>Sorry, nothing here.</p>;
 
 function App() {
+  const [user, setUser] = React.useState({ name: "", email: "" });
+
   function handleUser(value) {
+    localStorage.setItem("user", JSON.stringify(value));
     setUser(value);
   }
-  const [user, setUser] = React.useState({ name: "", email: "" });
-  console.log(user);
   return (
-    <main
-      css={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: "grid",
-        gridTemplateRows: "100 auto"
-      }}
-    >
+    <main>
       <React.Suspense fallback={<Loading />}>
         <div>
           <Router>
@@ -35,7 +26,11 @@ function App() {
           </Router>
         </div>
         <Router>
+<<<<<<< HEAD
           <Main path="/" />
+=======
+          <Main path="/discussion" />
+>>>>>>> Fix Login local storage
           <LoginForm path="/" onUser={handleUser} />
           <Discussion path="discussion/:title" />
           <NotFound default />

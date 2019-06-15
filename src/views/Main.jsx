@@ -2,7 +2,6 @@
 import { jsx } from "@emotion/core";
 import React from "react";
 import { createPortal } from "react-dom";
-import { Link } from "@reach/router";
 import TopicList from "../components/TopicList";
 import Loading from "../components/Loading";
 const DiscussionForm = React.lazy(() => import("../components/DiscussionForm"));
@@ -40,7 +39,7 @@ function Main() {
           flexDirection: "row",
           justifyContent: "center",
           margin: "0 auto",
-          backgroundColor: "#DAE0E6",
+          // backgroundColor: "#DAE0E6",
           width: "100%",
           height: "89vh"
         }}
@@ -80,7 +79,7 @@ function Main() {
               )}
           </React.Suspense>
           <div css={{ marginTop: "70px" }}>
-            <TopicList />
+            <TopicList discussions={discussions} />
           </div>
         </div>
       </main>

@@ -90,27 +90,18 @@ function LoginForm({ onUser }) {
       padding: "0.2em"
     }
   };
-  const [contentUserName, setContUserName] = React.useState("");
-  const [contentUserEmail, setContentEmail] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    
-    onUser({ name: contentUserName, email: contentUserEmail });
-    
-  }
-
-  function handleChange(event) {
-    if (event.target.name === "userName") {
-      setContUserName(event.target.value);
-    } else {
-      setContentEmail(event.target.value);
-    }
+    onUser({
+      name: event.target.elements.userName.value,
+      email: event.target.elements.email.value
+    });
   }
 
   return (
     <div css={formContainer}>
-      <form onSubmit={handleSubmit} css={styledForm}>
+      <form css={styledForm} onSubmit={handleSubmit}>
         <header css={styledHeader}>Username</header>
         <input
           css={input}
@@ -120,7 +111,6 @@ function LoginForm({ onUser }) {
           required
           name="userName"
           id="userName"
-          onChange={handleChange}
           autoFocus
           autoComplete="off"
         />
@@ -133,7 +123,6 @@ function LoginForm({ onUser }) {
           required
           name="email"
           id="email"
-          onChange={handleChange}
           autoFocus
           autoComplete="off"
         />
