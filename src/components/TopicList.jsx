@@ -8,7 +8,7 @@ function TopicList({ children, discussions }) {
     <section>
       {discussions.map(values => (
         <Link
-          to={`discussion/${values.title}`}
+          to={`/${values.title}`}
           css={{ color: "black", textDecoration: "none" }}
         >
           <Topic author={values.author} title={values.title} />

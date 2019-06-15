@@ -26,9 +26,9 @@ function App() {
           </Router>
         </div>
         <Router>
-          <Main path="/discussion" />
           <LoginForm path="/" onUser={handleUser} />
-          <Discussion path="discussion/:title" />
+          <Main path="/discussion" />
+          <Discussion path="/:title" />
           <NotFound default />
         </Router>
       </React.Suspense>
