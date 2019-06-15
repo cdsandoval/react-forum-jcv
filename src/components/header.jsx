@@ -1,8 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import { navigate } from "@reach/router";
+
 function Header() {
   function logOut() {
     localStorage.removeItem("user");
+    navigate("/");
   }
   return (
     <header
