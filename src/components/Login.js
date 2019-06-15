@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { navigate } from "@reach/router";
 
 function LoginForm({ onUser }) {
   const formContainer = {
@@ -97,6 +98,7 @@ function LoginForm({ onUser }) {
       name: event.target.elements.userName.value,
       email: event.target.elements.email.value
     });
+    event.target.elements.userName.value && navigate("/discussion");
   }
 
   return (
@@ -126,8 +128,8 @@ function LoginForm({ onUser }) {
           autoFocus
           autoComplete="off"
         />
-        <button css={submitButton} type="submit">
-          Next
+        <button type="submit" css={submitButton}>
+          Enter
         </button>
       </form>
     </div>
