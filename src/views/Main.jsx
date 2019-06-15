@@ -28,7 +28,7 @@ function Main({ discussions, setDiscussions }) {
   }
 
   return (
-    <div>
+    <>
       <main
         css={{
           boxSizing: "border-box",
@@ -80,7 +80,7 @@ function Main({ discussions, setDiscussions }) {
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 
