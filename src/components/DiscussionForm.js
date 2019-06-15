@@ -16,10 +16,11 @@ function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
     return obj;
   }
 
-  // const author = localStorage.getItem(user[username]); => for when we have a user stored in the local storage
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const discussion = {
     ID: Date.now(),
-    author: "yo",
+    author: user.name,
     date: new Date(),
     comments: []
   };
