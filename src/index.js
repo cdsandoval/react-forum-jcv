@@ -19,6 +19,7 @@ function App() {
   function handleUser(value) {
     localStorage.setItem("user", JSON.stringify(value));
     setUser(value);
+    console.log(user);
   }
   return (
     <main>
