@@ -19,7 +19,6 @@ function App() {
   function handleUser(value) {
     localStorage.setItem("user", JSON.stringify(value));
     setUser(value);
-    console.log(user);
   }
   return (
     <main>
@@ -36,7 +35,11 @@ function App() {
             discussions={discussions}
             setDiscussions={setDiscussions}
           />
-          <Discussion path="/:title" discussions={discussions} />
+          <Discussion
+            path="/:title"
+            discussions={discussions}
+            setDiscussions={setDiscussions}
+          />
           <NotFound default />
         </Router>
       </React.Suspense>
