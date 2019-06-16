@@ -29,7 +29,7 @@ function DiscussionDetails({ discussions, title }) {
           return (
             <div css={detailsContainer}>
               <p css={authorAndDate}>
-                {element.author} | {element.date}
+                {element.author} | {new Date(element.date).toLocaleDateString()}
               </p>
               <h1 css={titleStyled}>{element.title}</h1>
               <p css={bodyDiscussion}>{element.body}</p>
