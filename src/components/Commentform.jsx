@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 
-function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
+function Commentform({ setModalIsOpen, setDiscussions, discussions }) {
   function JSONify(elements) {
     var obj = {};
     for (var i = 0; i < elements.length; ++i) {
-      var element = elements[i];
-      var name = element.name;
-      var value = element.value;
+      var name = elements[i].name;
+      var value = elements[i].value;
       if (name) {
         obj[name] = value;
       }
@@ -17,24 +16,24 @@ function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const discussion = {
+  const comment = {
     ID: Date.now(),
     author: user.name,
     date: new Date(),
-    comments: []
+    body: "alabama"
   };
 
   function handleSubmit(event) {
     event.preventDefault();
     const data = JSONify(event.target.elements);
-    Object.assign(discussion, data);
-    const addedData = discussions.concat(discussion);
+    Object.assign(comment, data);
+    const addedData = discussions.concat(comment);
     setDiscussions(addedData);
     localStorage.setItem("discussions", JSON.stringify(addedData));
     setModalIsOpen(false);
   }
 
-  function handleCancel(event) {
+  function handleCancel() {
     setModalIsOpen(false);
   }
 
@@ -61,19 +60,6 @@ function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
     height: "100%",
     overflow: "auto",
     backgroundColor: "rgba(0, 0, 0, 0.4)"
-  };
-
-  const titleStyle = {
-    margin: "1em 0",
-    fontSize: "25px",
-    paddingTop: "8px",
-    paddingBottom: "8px",
-    borderRadius: "4px",
-    outline: "none",
-    border: "none",
-    borderBottom: "1px solid #ddd",
-    width: "100%",
-    textAlign: "center"
   };
 
   const bodyStyle = {
@@ -126,36 +112,23 @@ function DiscussionForm({ setModalIsOpen, setDiscussions, discussions }) {
         >
           &times;
         </span>
-        <label css={{ color: "white", fontSize: "40px" }} htmlFor="title">
-          Title
-        </label>
-        <input
-          css={titleStyle}
-          name="title"
-          type="text"
-          id="title"
-          aria-label="Enter discussion title"
-          placeholder="Enter discussion title"
-          required
-          autoComplete="off"
-        />
-        <label css={{ color: "white", fontSize: "40px" }} htmlFor="body">
-          Body
+        <label css={{ color: "white", fontSize: "40px" }} htmlFor="comment">
+          Comment
         </label>
         <textarea
           css={bodyStyle}
           cols="20"
           rows="10"
-          name="body"
-          id="body"
-          aria-label="Enter discussion body"
-          placeholder="Enter discussion body"
+          name="comment"
+          id="comment"
+          aria-label="Enter comment"
+          placeholder="Enter comment"
           required
         />
-        <input css={submitButton} type="submit" value="Create!" />
+        <input css={submitButton} type="submit" value="SEND" />
       </form>
     </div>
   );
 }
 
-export default DiscussionForm;
+export default Commentform;

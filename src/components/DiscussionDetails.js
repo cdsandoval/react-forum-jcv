@@ -14,7 +14,11 @@ function DiscussionDetails({ discussions, title }) {
   };
 
   const detailsContainer = {
-    marginLeft: "10px"
+    marginTop: "15px",
+    borderRadius: "20px",
+    marginLeft: "10px",
+    backgroundColor: "#eee",
+    padding: "10px 20px 40px"
   };
 
   const bodyDiscussion = {
@@ -27,7 +31,7 @@ function DiscussionDetails({ discussions, title }) {
       {discussions.map(element => {
         if (element.title.replace(/[^a-zA-Z ]/g, "") === title) {
           return (
-            <div css={detailsContainer}>
+            <div css={detailsContainer} key={Date.now()}>
               <p css={authorAndDate}>
                 {element.author} | {element.date}
               </p>
