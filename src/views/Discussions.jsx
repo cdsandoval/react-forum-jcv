@@ -41,22 +41,24 @@ function Discussions({ title, discussions, setDiscussions }) {
   return (
     <>
       <DiscussionDetails title={title} discussions={discussions} />
-      <CommentList
-        comments={discussions[index].comments}
-        handleClick={handleClick}
-      />
-      <Link to="/discussion">Back Discussions</Link>
+      <button onClick={handleClick}>Add a comment!</button>
       <React.Suspense fallback={<Loading />}>
         {modalIsOpen &&
           createPortal(
             <CommentForm
               setModalIsOpen={handleOpenedModel}
               setDiscussions={setDiscussions}
+              title={title}
               discussions={discussions}
             />,
             $comment
           )}
       </React.Suspense>
+      <CommentList
+        comments={discussions[index].comments}
+        handleClick={handleClick}
+      />
+      <Link to="/discussion">Back Discussions</Link>
     </>
   );
 }

@@ -1,7 +1,8 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx } from "@emotion/core";
 
-function Commentform({ setModalIsOpen, setDiscussions, discussions }) {
+function Commentform({ setModalIsOpen, setDiscussions, discussions, title }) {
   function JSONify(elements) {
     var obj = {};
     for (var i = 0; i < elements.length; ++i) {
@@ -19,18 +20,30 @@ function Commentform({ setModalIsOpen, setDiscussions, discussions }) {
   const comment = {
     ID: Date.now(),
     author: user.name,
-    date: new Date(),
-    body: "alabama"
+    date: new Date()
   };
+
+  // const [discComments, setDiscComments] = React.useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    const data = JSONify(event.target.elements);
-    Object.assign(comment, data);
-    const addedData = discussions.concat(comment);
-    setDiscussions(addedData);
-    localStorage.setItem("discussions", JSON.stringify(addedData));
-    setModalIsOpen(false);
+    discussions.map(element => {
+      if (element.title.replace(/[^a-zA-Z ]/g, "") === title) {
+        const discussionComments = element.comments;
+        // setDiscComments(discussionComments);
+        const data = JSONify(event.target.elements);
+        console.log(data);
+        Object.assign(comment, data);
+        console.log(comment);
+        // console.log(discComments);
+        const addedData = discussionComments.concat(comment);
+        console.log(addedData);
+        console.log(element);
+        // setDiscussions(addedData);
+        // localStorage.setItem("discussions", JSON.stringify(addedData));
+        setModalIsOpen(false);
+      }
+    });
   }
 
   function handleCancel() {
@@ -108,19 +121,22 @@ function Commentform({ setModalIsOpen, setDiscussions, discussions }) {
         <span
           onClick={handleCancel}
           css={closeButton}
-          aria-label="Close discussion form"
+          aria-label="Close comment form"
         >
           &times;
         </span>
-        <label css={{ color: "white", fontSize: "40px" }} htmlFor="comment">
+        <label
+          css={{ color: "white", fontSize: "40px", marginBottom: "15px" }}
+          htmlFor="body"
+        >
           Comment
         </label>
         <textarea
           css={bodyStyle}
           cols="20"
           rows="10"
-          name="comment"
-          id="comment"
+          name="body"
+          id="body"
           aria-label="Enter comment"
           placeholder="Enter comment"
           required
