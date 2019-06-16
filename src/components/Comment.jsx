@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import React from "react";
 
 function Comment({ comment, handleClick }) {
   const button = {
